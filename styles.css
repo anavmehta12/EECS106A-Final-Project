@@ -129,6 +129,7 @@ ol {
 .noteImage {
   height: 50vh;
   margin-top: 10vh;
+  margin-bottom: 10vh;
 }
 
 .imagSubTitle {
@@ -197,4 +198,29 @@ ol {
 
 .backgroundImageText {
   color: white;
+}
+
+.footer {
+  position: sticky;
+  width: 100%;
+  background-color: lightgray;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer a {
+  color: blue;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+  color: black;
 }
