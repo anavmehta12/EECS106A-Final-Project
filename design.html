@@ -34,24 +34,26 @@
     <h2 class="title">Project Design</h2>
     <div class="wrapper">
       <div class="content">
-        <h3>Design criteria and Desired Functionality:</h3>
+        <h3>Design Goals:</h3>
+        The following is a list of our criteria needed for what we considered to be a successful implementation
+        of the UR-10 with the smart suction cup gripper to play chess:
 
         <ul>
           <li>
-            The robot arm can pick up and place down a piece correctly as we
-            desired.
+            Use computer vision to identify the center of the board 
+            and adjust mapping of board accordingly.
           </li>
           <li>
-            The robot arm need to have the ability to perform its own move base
-            on the current game situation so it can play with humans.
+            The terminal accepts a user input and returns the next move played,
+             resulting in pick and place operation to move pieces according.
           </li>
           <li>
-            Perform haptic search so it can pick up the chess pieces accurately
-            even if we only have the rough idea of where the piece will be.
+            Upon an unsuccessful suction seal, the UR-10 move the end effector towards 
+            the most likely location for a better seal.
           </li>
           <li>
-            The robot arm need to detect and deal with the edge cases in chess
-            such as upgrading and castling.
+            The suction cup should be appropriate state (Push, Pull, Off) 
+            corresponding to the action or nonaction happening.
           </li>
           <li>
             The robot arm can recognize the current game using machine learing
@@ -59,14 +61,19 @@
           </li>
         </ul>
 
-        <h3>Design Choices and Details:</h3>
+        <h3>Design Decisions:</h3>
+        <h4>Hardware and Electronics:</h4>
         <p>
-          Although the game we want the robot arm to perfrom is just a normal
-          chess game, since we want to emphasize the idea of smart suction cup.
-          We 3D print our own chess pieces so that it is thin and flat that will
-          be hard for a normal grippers to pick up. We also make our own chess
-          board by cutting a wooden board that each square of the chess will be
-          3 inch by 3 inch.
+          We built off the system provided by Dr. Jungpyo Lee. Pneumatically, the system consisted of a single solenoid to control the flow of air 
+          to an in line vacuum generator. The solenoid was electronically wired to a n-type MOSFET, whose gate pin was controlled 
+          by a ESP32 microcontroller. In it's initial state, the system had no means for pushing air out of the suction cup end effector. 
+          Together with Dr Jungpyo Lee, we devised a new system which included push. This newly devised system saw the addition of 3 more 
+          solenoid-MOSFET pairs. The updated pneumatic lines and circuit are shown in the image below, accompanied by a schematic of the the circuit as well. 
+        </p>
+        <p>
+          Initially, we experimented with splitting the line using only two solenoids. The idea being the solenoids would be on separate lines and activate 
+          corresponding to being in a push or pull state. This did not work as intended air was 
+          escaping through the vacuum generator. We decided to get the third solenoid to isolate the vacuum generator when going into the push state. 
         </p>
       </div>
     </div>
