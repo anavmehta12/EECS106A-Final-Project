@@ -34,7 +34,7 @@
     <h2 class="title">Implementation</h2>
     <div class="wrapper">
       <div class="content">
-        <h3>Hardware:</h3>
+        <h3>Hardware</h3>
         <h4>UR10 Robot Arm:</h4>
         <p>
           We are really lucky that the Embodied Dexterity allowed us to use
@@ -56,11 +56,12 @@
           hard since it takes some time for the item to fall off even after
           turning off the suction cup. So we design and create another circuit
           that can create positive pressure to push the item off instead off
-          letting it fall naturally. Hers is a <a href="">link</a> to the detail
-          circuit diagram in the additional item section.
+          letting it fall naturally. Hers is a
+          <a href="design.html#circuit">link</a> to the more detailed
+          description of the circuit in the design section.
         </p>
       </div>
-
+      <img class="noteImage" src="images/Detailed Circuit.png" />
       <div class="content">
         <h4>Smart Suction Cup:</h4>
         <p>
@@ -85,8 +86,8 @@
       </div>
       <img class="noteImage" src="images/smart suction cup.png" />
       <div class="content">
-        <h3>Software:</h3>
-        <h4>Computer vision:</h4>
+        <h3>Software</h3>
+        <h4>Computer Vision:</h4>
         <p>
           This part is straight forward, we use the color thresholding we
           learned in the lab to locate the center of the board by pasting a
@@ -102,10 +103,42 @@
       </div>
       <img class="noteImage" src="images/orange tape center.jpg" />
       <div class="content">
-        <h4>Haptic Search and Pressure Sensing</h4>
-        <p></p>
+        <h4>Haptic Search and Pressure Sensing:</h4>
+        <p>
+          As we mentioned above, the smart suctiion cup perform haptic search to
+          find a better suction spot, and the next movement of the suction cup
+          depends on the current pressure readings of the 4 chambers in the
+          suction cup.
+        </p>
       </div>
-      <img />
+
+      <div class="imageWrapper">
+        <div class="title-image-wrapper">
+          <p class="imagSubTitle">Pressure reading when no suction occur:</p>
+          <img src="images/normal pressure sensing.png" class="resultImage" />
+        </div>
+        <div class="title-image-wrapper">
+          <p class="imagSubTitle">Pressure reading when suction occur</p>
+          <img src="images/Suction pressure sensing.png" class="resultImage" />
+        </div>
+      </div>
+
+      <div class="content">
+        <p>
+          As we can see above, when the suction is steady and successful, the
+          prresure reading for all 4 chambers all drop and get really close to
+          each other. So in the code, we compare the current pressure readings
+          for all 4 chambers with a certain threshold that we got from trials
+          and errors so that if all 4 chambers have a pressure reading that is
+          lower than the threshold, the suction is considered successful. If not
+          successful, we compute a directional vector base on the difference
+          between the pressure reading in different chambers, and normalize it
+          to get a general direction of where the items are. And we apply a
+          small step size to the direcrion so the robot arm can move in that
+          direction with a small step size to the item to perform next suction.
+          And it will keep trying until a certain time out.
+        </p>
+      </div>
     </div>
   </body>
 </html>
