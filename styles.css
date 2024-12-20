@@ -5,6 +5,10 @@ p {
   color: #333333;
 }
 
+ul {
+  font-size: 20px;
+}
+
 a {
   font-size: 20px;
   color: #3498db;
@@ -223,4 +227,8 @@ ol {
 .footer a:hover {
   text-decoration: underline;
   color: black;
+}
+
+.content {
+  width: 70vw;
 }

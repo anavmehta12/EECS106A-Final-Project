@@ -31,9 +31,59 @@
       </h1>
       <p class="backgroundImageText">EECS106A Fall 2024 Team 23</p>
     </div>
-    <h1>Implementation</h1>
+    <h2 class="title">Implementation</h2>
     <div class="wrapper">
-      <h2 class="title"></h2>
+      <div class="content">
+        <h3>Hardware:</h3>
+        <h4>UR10 Robot Arm:</h4>
+        <p>
+          We are really lucky that the Embodied Dexterity allowed us to use
+          their UR10 robot arm to finsih our project. Although there are some
+          difference between the codes and functions from what we used in the
+          lab for a sawyer, but the idea is generally similar that is easy for
+          us to adapt. The only stuggle is that we need to get used to
+          initializing rtde (real time data exchange) helpler before we call or
+          perform any function or action about the robot arm.
+        </p>
+      </div>
+      <img class="noteImage" src="images/ur10.png" />
+
+      <div class="content">
+        <h4>Circuit:</h4>
+        <p>
+          The smart suction cup originally only have negative pressure to suck
+          item up. In thid case, the placing action of the robot arm will be
+          hard since it takes some time for the item to fall off even after
+          turning off the suction cup. So we design and create another circuit
+          that can create positive pressure to push the item off instead off
+          letting it fall naturally. Hers is a <a href="">link</a> to the detail
+          circuit diagram in the additional item section.
+        </p>
+      </div>
+
+      <div class="content">
+        <h4>Smart Suction Cup:</h4>
+        <p>
+          The idea of smart suction cup is to pick up items with complex shape
+          or adverserial item that is difficult for computer vision to give a
+          good suction position by performing haptic search. The idea of haptic
+          search is that the smart suction cup have 4 chambers all with pressure
+          sensors. So we can use the pressure readings to decide whether the
+          suction is sucessful or not. And also if the suction is not fully
+          successful, which direction of the robot arm should move to perform
+          the next suction, and keep trying until we get it. In this way, even
+          the computer vision is failing to give a good spot of scution, if we
+          at least know where the item roughly is, we can still pick the items
+          up successfully. In our case, since the 3D printed chess pieces have
+          some holes and gaps due to the shape of the pieces, like the eyes and
+          neck of the knights, we need to perform haptic search to get a good
+          suction spot. Here is a <a href="">link</a> to the close up haptic
+          search video in additional materials section. You can find more
+          details about smart suction cup with haptic search
+          <a href="https://arxiv.org/abs/2309.07360">here</a>
+        </p>
+      </div>
+      <img class="noteImage" src="images/smart suction cup.png" />
     </div>
   </body>
 </html>
