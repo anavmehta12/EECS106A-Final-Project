@@ -80,7 +80,7 @@ h4 {
 }
 
 .resultImage {
-  width: 30vw;
+  height: 40vh;
 }
 
 .imageWrapper {
@@ -145,6 +145,7 @@ ol {
 }
 
 .title-image-wrapper {
+  margin-top: 3%;
   width: 30%;
   display: flex;
   flex-direction: column;
@@ -185,10 +186,10 @@ ol {
 .background {
   margin-top: 7%;
   background-image: url("images/Berkeley\ Night.jpg");
-  background-size: cover; /* Ensures the image covers the entire div */
-  background-repeat: no-repeat; /* Prevents the image from repeating */
-  background-position: center; /* Centers the image */
-  width: 100%; /* Full height of the viewport */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
