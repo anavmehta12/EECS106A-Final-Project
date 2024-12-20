@@ -183,7 +183,7 @@ ol {
 }
 
 .background {
-  margin-top: 5%;
+  margin-top: 7%;
   background-image: url("images/Berkeley\ Night.jpg");
   background-size: cover; /* Ensures the image covers the entire div */
   background-repeat: no-repeat; /* Prevents the image from repeating */
