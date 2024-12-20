@@ -78,9 +78,8 @@
           up successfully. In our case, since the 3D printed chess pieces have
           some holes and gaps due to the shape of the pieces, like the eyes and
           neck of the knights, we need to perform haptic search to get a good
-          suction spot. Here is a <a href="">link</a> to the close up haptic
-          search video in additional materials section. You can find more
-          details about smart suction cup with haptic search
+          suction spot. You can find more details about smart suction cup with
+          haptic search
           <a href="https://arxiv.org/abs/2309.07360">here</a>
         </p>
       </div>
@@ -93,9 +92,10 @@
           learned in the lab to locate the center of the board by pasting a
           orange tape in the middle of the board. So we can create a grid
           mapping base on the center of the board. We first initialize the
-          camera frame using the tool frame to get the transfrom from link to
-          camera to get the position in base frame which is the world frame. The
-          robot arm will first face the camera down and start detecting the
+          camera frame using the tool frame to get the transfrom from camera
+          link to base, which is the world frame, and then we compute the
+          position of the orange tape in world frame using that transformation
+          The robot arm will first face the camera down and start detecting the
           orange tape in the camera frame, I then put the detected position in
           another python file so the robot arm will go to the center for us to
           verify whether it is accurate or not.
@@ -129,15 +129,109 @@
           prresure reading for all 4 chambers all drop and get really close to
           each other. So in the code, we compare the current pressure readings
           for all 4 chambers with a certain threshold that we got from trials
-          and errors so that if the average of the 4 chambers have a pressure reading that is
-          lower than the threshold, the suction is considered successful. If not
-          successful, we compute a directional vector base on the difference
-          between the pressure reading in different chambers, and normalize it
-          to get a general direction of where the items are. And we apply a
-          small step size to the direcrion so the robot arm can move in that
-          direction with a small step size to the item to perform next suction.
-          And it will keep trying until a certain time out.
+          and errors so that if the average of the 4 chambers have a pressure
+          reading that is lower than the threshold, the suction is considered
+          successful. If not successful, we compute a directional vector base on
+          the difference between the pressure reading in different chambers, and
+          normalize it to get a general direction of where the items are. And we
+          apply a small step size to the direcrion so the robot arm can move in
+          that direction with a small step size to the item to perform next
+          suction. And it will keep trying until a certain time out. Also as we
+          mentioned above, the pieces will not fall down even when we turn off
+          the suction cup, so we implement the positive pressure to push the
+          pieces off. During haptic search, even though some suction may be
+          flagged as unsuccessful, but there may still be some certain level of
+          suction on the pieces, which may drag the pieces into the direction of
+          the next move that lead to the failing of haptic search. So everytime
+          after we flag a suction as unsuccessful, we push the pieces off using
+          the positive pressure that is created by our circuit.
         </p>
+      </div>
+
+      <div class="videoWrapper">
+        <p class="videoTitle">Close up haptic Search:</p>
+        <video class="videos" controls>
+          <source src="videos/Haptic Search.mov" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="content">
+        <h4>Game Logic:</h4>
+        <p>
+          For the robot arm to know and perform the next step itself, we use the
+          Stockfish API that allow us to type in our move and it will perform
+          its next move itself base on the current situation. At the same time,
+          it will record the entire board - what and where are all the pieces on
+          board. It will also gives information about whether the move will
+          induce any capturing, promoting, castling, and what are the pieces
+          involve in this action, so we can perform the action we want base on
+          the information that the API return. We need to filter out the
+          information that we need and also consider some cases where several
+          actions can occur at the same time like capturing while promoting .
+          And after we have the information we want, we can classify which case
+          it is base on the information, and call some basic functions that we
+          wrote to perform the entire process for that case.
+        </p>
+      </div>
+      <div class="videoWrapper">
+        <p class="videoTitle">Capturing While Promoting:</p>
+        <video class="videos" controls>
+          <source src="videos/promoting.MOV" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="content">
+        <h3>Complete System</h3>
+        <ol>
+          <li>
+            Use computer vision to get the center of the board by color
+            thresholding
+          </li>
+          <li>
+            After we have the center, we can check the accuracy by putting the
+            coordinates into another file that will goes to the position
+          </li>
+          <li>
+            After we have the correct center position, we update it manually in
+            the game play file so that when the game start, it will calculate
+            the position of the grids base on the center position.
+          </li>
+          <li>
+            When the game start, we will perform our move by typing the move in
+            the terminal, and the robot arm will perform the move for us.
+          </li>
+          <li>
+            Since We only know that the piece will be in a certain grid, but not
+            exactly where they are in the grid. And there are some holes and
+            gaps on the piece as well, so the robot arm will go to the center of
+            the grid and perform haptic search on the piece until picking it up
+            successfully.
+          </li>
+          <li>
+            Everytime after we perform a move, the robot arm will perform its
+            own move base on the information and move that is return from the
+            StockFish API.
+          </li>
+          <li>
+            In the game, the sofware we wrote is always checking which case the
+            move will result in, such as capturing and castling. So for every
+            move, our software will classify which case it is and perform
+            corresponding move. Like for capturing, it will first move the piece
+            that got captured into their designed graveyard, and move the moving
+            piece to the position of that piece that just got captured.
+          </li>
+          <li>
+            And we can now play a fun chess game with a robot arm until we get a
+            winner.
+          </li>
+        </ol>
+      </div>
+      <div class="videoWrapper">
+        <p class="videoTitle">Hyperlapse Gameplay:</p>
+        <video class="videos" controls>
+          <source src="videos/EE106A Final Demo fast.MOV" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
   </body>

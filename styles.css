@@ -5,7 +5,8 @@ p {
   color: #333333;
 }
 
-ul {
+ul,
+ol {
   font-size: 20px;
 }
 
@@ -230,4 +231,20 @@ ol {
 
 .content {
   width: 70vw;
+}
+
+.videos {
+  width: 50vw;
+}
+
+.videoWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3%;
+}
+
+.videoTitle {
+  text-align: center;
 }
