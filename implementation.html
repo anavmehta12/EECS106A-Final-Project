@@ -84,6 +84,28 @@
         </p>
       </div>
       <img class="noteImage" src="images/smart suction cup.png" />
+      <div class="content">
+        <h3>Software:</h3>
+        <h4>Computer vision:</h4>
+        <p>
+          This part is straight forward, we use the color thresholding we
+          learned in the lab to locate the center of the board by pasting a
+          orange tape in the middle of the board. So we can create a grid
+          mapping base on the center of the board. We first initialize the
+          camera frame using the tool frame to get the transfrom from link to
+          camera to get the position in base frame which is the world frame. The
+          robot arm will first face the camera down and start detecting the
+          orange tape in the camera frame, I then put the detected position in
+          another python file so the robot arm will go to the center for us to
+          verify whether it is accurate or not.
+        </p>
+      </div>
+      <img class="noteImage" src="images/orange tape center.jpg" />
+      <div class="content">
+        <h4>Haptic Search and Pressure Sensing</h4>
+        <p></p>
+      </div>
+      <img />
     </div>
   </body>
 </html>
