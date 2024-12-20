@@ -34,41 +34,131 @@
     <h2 class="title">Project Design</h2>
     <div class="wrapper">
       <div class="content">
-        <h3>Design criteria and Desired Functionality:</h3>
+        <h3>Functionality:</h3>
 
-        <ul>
-          <li>
-            The robot arm can pick up and place down a piece correctly as we
-            desired.
-          </li>
-          <li>
-            The robot arm need to have the ability to perform its own move base
-            on the current game situation so it can play with humans.
-          </li>
-          <li>
-            Perform haptic search so it can pick up the chess pieces accurately
-            even if we only have the rough idea of where the piece will be.
-          </li>
-          <li>
-            The robot arm need to detect and deal with the edge cases in chess
-            such as upgrading and castling.
-          </li>
-          <li>
-            The robot arm can recognize the current game using machine learing
-            and computer vision so we don't need to record the game stats.
-          </li>
-        </ul>
-
-        <h3>Design Choices and Details:</h3>
         <p>
-          Although the game we want the robot arm to perfrom is just a normal
-          chess game, since we want to emphasize the idea of smart suction cup.
-          We 3D print our own chess pieces so that it is thin and flat that will
-          be hard for a normal grippers to pick up. We also make our own chess
-          board by cutting a wooden board that each square of the chess will be
-          3 inch by 3 inch.
+          The desired functionality starts with the user inputting their desired
+          move into the terminal and ends with the robot arm using the suction
+          cup gripper to do pick and place operations. The robot arm plays the
+          users move as well as a move of its own. To pick up a piece the UR-10
+          robot arm must move its end effector to the appropriate location,
+          activate a pull state the suction cup and lower slowly until a seal is
+          formed. If the initial attempt to pick up the piece fails, the end
+          effector moves toward the most probable location that a seal will be
+          formed. The robot arm then moves the piece to the appropriate location
+          switching between the suction states as needed. This continues until
+          their has been a check mate, or the user surrenders.
         </p>
       </div>
+      <img class="noteImage" src="images/System Diagram.png" />
+      <div class="content">
+        <h3>Design Goals:</h3>
+        <p>
+          The following is a list of our criteria needed for what we considered
+          to be a successful implementation of the UR-10 with the smart suction
+          cup gripper to play chess:
+        </p>
+        <ul>
+          <li>
+            Use computer vision to identify the center of the board and adjust
+            mapping of board accordingly.
+          </li>
+          <li>
+            The terminal accepts a user input and returns the next move played,
+            resulting in pick and place operation to move pieces according.
+          </li>
+          <li>
+            Upon an unsuccessful suction seal, the UR-10 move the end effector
+            towards the most likely location for a better seal.
+          </li>
+          <li>
+            The suction cup should be appropriate state (Push, Pull, Off)
+            corresponding to the action or nonaction happening.
+          </li>
+          <li>
+            Consider chess edge cases. (i.e. Capturing, Castling, Promotion)
+          </li>
+        </ul>
+        <p>
+          With this combination of design goals, the UR-10 robot arm should be
+          able to repeatability and reliably play countless number of chess
+          games. Additionally, it was important that we design our chess pieces
+          such that it demonstrates appropriate use of haptic feedback search
+          using the smart suction cup technology.
+        </p>
+      </div>
+      <div class="content">
+        <h3>Design Decisions</h3>
+        <h4>Custom Chess Pieces:</h4>
+        <p>
+          Our team custom designed flat chess pieces in order to highlight the
+          application of haptic search. The pieces were designed using the
+          computer-aided design software OnShape, and are pictured below. When
+          designing these pieces we ensured there was ample surface area for the
+          gripper to form a seal, while adding still some degree of complexity.
+          The some pieces have sharp corners and holes making it difficult for
+          the haptic search to be successful. Further, we wanted the pieces to
+          be light to demonstrate the need for a push state. These pieces are
+          light enough such that when the section gripper is in the off state,
+          the piece remains attached to the gripper due to a residual vacuum
+          left within the system.
+        </p>
+      </div>
+      <img class="noteImage" src="images/Chess pieces.png" />
+      <div class="content">
+        <h4>Hardware and Electronics:</h4>
+        <p>
+          We built off the system provided by Dr. Jungpyo Lee. Pneumatically,
+          the system consisted of a single solenoid to control the flow of air
+          to an in line vacuum generator. The solenoid was electronically wired
+          to a n-type MOSFET, whose gate pin was controlled by a ESP32
+          microcontroller. In it's initial state, the system had no means for
+          pushing air out of the suction cup end effector. Together with Dr
+          Jungpyo Lee, we devised a new system which included push. This newly
+          devised system saw the addition of 3 more solenoid-MOSFET pairs. The
+          updated pneumatic lines and circuit are shown in the image below,
+          accompanied by a schematic of the the circuit as well. Initially, we
+          experimented with splitting the line using only two solenoids. The
+          idea being the solenoids would be on separate lines and activate
+          corresponding to being in a push or pull state. This did not work as
+          intended air was escaping through the vacuum generator. We decided to
+          get the third solenoid to isolate the vacuum generator when going into
+          the push state.
+        </p>
+      </div>
+      <img class="noteImage" src="images/Detailed Circuit.png" />
+      <img class="noteImage" src="images/Circuit Diagram.jpg" />
+      <div class="content">
+        <h3>Gameplay</h3>
+        <p>
+          We out sourced the logic behind the game play to an open-source chess
+          engine called Stockfish. Due to hardware limitations we were
+          restricted to using older version. We drew up a 24 in x 24 in chess
+          board, resulting in squares that were 3 in x 3 in. We decided to hard
+          program the location of each squares center, however this does not
+          grantee a piece will be in an orientation that can be picked up on the
+          first try. Additionally, we programmed in extra locations on the off
+          the board for each team to have a graveyard and place where promotion
+          pieces can be grabbed from. This way we could handle the common
+          capture and the less frequent edge cases like promoting and castling.
+        </p>
+      </div>
+      <img class="noteImage" src="images/Discriptive Board Layout.jpg" />
     </div>
   </body>
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2024 Berkeley EECS106A Team 23. All rights reserved.</p>
+      <p>
+        Github:
+        <a href="https://github.com/Jungpyo-L/pushpull_suctioncup_106a"
+          >EE106A Push Pull Suction Cup</a
+        >
+      </p>
+      <p>
+        Contact:
+        <a href="mailto:zx40224617@berkeley.edu">zx40224617@berkeley.edu</a>
+      </p>
+    </div>
+  </footer>
 </html>
