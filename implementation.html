@@ -129,7 +129,7 @@
           prresure reading for all 4 chambers all drop and get really close to
           each other. So in the code, we compare the current pressure readings
           for all 4 chambers with a certain threshold that we got from trials
-          and errors so that if all 4 chambers have a pressure reading that is
+          and errors so that if the average of the 4 chambers have a pressure reading that is
           lower than the threshold, the suction is considered successful. If not
           successful, we compute a directional vector base on the difference
           between the pressure reading in different chambers, and normalize it
