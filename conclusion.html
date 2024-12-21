@@ -4,219 +4,219 @@
 
 
 
-<head>
+  <head>
 
-  <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-  <title>EECS106 A Final Project</title>
+    <title>EECS106 A Final Project</title>
 
-</head>
+  </head>
 
 
 
-<body class="pageContents">
+  <body class="pageContents">
 
-  <nav class="top-bar">
+    <nav class="top-bar">
 
-    <a href="index.html" class="nav-item">Introduction</a>
+      <a href="index.html" class="nav-item">Introduction</a>
 
-    <a href="design.html" class="nav-item">Design</a>
+      <a href="design.html" class="nav-item">Design</a>
 
-    <a href="implementation.html" class="nav-item">Implementation</a>
+      <a href="implementation.html" class="nav-item">Implementation</a>
 
-    <a href="results.html" class="nav-item">Results</a>
+      <a href="results.html" class="nav-item">Results</a>
 
-    <a href="conclusion.html" class="nav-item">Conclusion</a>
+      <a href="conclusion.html" class="nav-item">Conclusion</a>
 
-    <a href="team.html" class="nav-item">Team</a>
+      <a href="team.html" class="nav-item">Team</a>
 
-    <a href="additional.html" class="nav-item">Additional Materials</a>
+      <a href="additional.html" class="nav-item">Additional Materials</a>
 
-  </nav>
+    </nav>
 
-  <div class="background">
+    <div class="background">
 
-    <h1 class="backgroundImageTitle">
+      <h1 class="backgroundImageTitle">
 
-      EECS 106A Final Project - Grippy Kasparov
+        EECS 106A Final Project - Grippy Kasparov
 
-    </h1>
+      </h1>
 
-    <p class="backgroundImageText">EECS106A Fall 2024 Team 23</p>
+      <p class="backgroundImageText">EECS106A Fall 2024 Team 23</p>
 
-  </div>
+    </div>
 
-  <h1 class="title">Conclusion</h1>
+    <h1 class="title">Conclusion</h1>
 
-  <div class="wrapper">
+    <div class="wrapper">
 
-    <div class="content">
+      <div class="content">
 
-      <h3>Finished Solution vs Design Criteria</h3>
+        <h3>Finished Solution vs Design Criteria</h3>
+
+        <p>
+
+          We acheived an end result that meets our design criteria on our
+
+          project proposal. For sensing, we used computer vision via color
+
+          thresholding to identify the center of the board, which laid the
+
+          foundation for the rest of the programming. We also developed our own
+
+          haptic sensing, which allowed us to perform haptic search and
+
+          identify, without vision, how to get a stable grip on a chess piece,
+
+          as well as when to proceed with moving the piece once the gripper had
+
+          been actuated. We were not able to recognize the gamestate with
+
+          computer vision, and so instead relied on recording the gamestate with
+
+          Stockfish's API. For motion planning, we simply performed the
+
+          gameplay, including capturing, castling, promoting, etc. For
+
+          actuation, we relied on the packages built into the lab's robot to
+
+          perform movement control, as well as our own circuitry to actuate the
+
+          negative and positive pressure of the vacuum suction cup.
+
+        </p>
+
+      </div>
+
+
+
+      <div class="content">
+
+        <h3>Challenges Encountered</h3>
+
+        <p>
+
+          By far the most difficult challenge was properly executing haptic
+
+          search. Chamber 3 on our suction cup misread positive pressure by
+
+          about 10% more than the others, which, given that haptic search relies
+
+          on using the pressure readings to create a direction vector toward the
+
+          chambers that have not grabbed onto an object, skewed the direction
+
+          the next search location was in and effectively broke haptic search
+
+          entirely. To cope, we isolated the datapoint and scaled it down, and
+
+          if this didn't work, we really just prayed that chamber 3 was one of
+
+          the initial chambers that found something to grab.
+
+        </p>
+
+        <p>
+
+          Another difficult challenge we had to tackle was our circuit
+
+          construction. As a prototype, it was done on a breadboard, which
+
+          resulted in the occassional loose wire. This then broke the positive
+
+          pressure actuation, and was quite tricky to debug. To fix it, we
+
+          eventually just had someone push it in every five minutes while
+
+          playing a game of chess.
+
+        </p>
+
+        <p>
+
+          Lastly, it was extremely difficult to cope with the safety parameters
+
+          of the lab bot. Movements outside a specific imaginary box or at a
+
+          specific speed would cause the robot arm to automatically shut down.
+
+          This would interrupt any process we were executing, and became a
+
+          significant delay strain on the iterative design process we were
+
+          executing.
+
+        </p>
+
+      </div>
+
+
+
+      <div class="content">
+
+        <h3>Hacks and Improvements</h3>
+
+        <p>
+
+          As aforementioned, would we be able to ensure better hardware, the
+
+          immediate improvements we would make would be having a real circuit
+
+          that does not involve loose wires and a vacuum that reads its pressure
+
+          properly. That would enable our group to avoid our hacks of "pray the
+
+          3rd chamber actuates first" and "pray the wires don't come loose".
+
+          Other improvements we would like to make are mostly aesthetic: black
+
+          and white peices instead of blue and black, a chess board that is
+
+          checkered instead of a grid of squares. It would also be nice to get
+
+          better timing on all the sequential steps of a the robot moving a
+
+          peice so games can be played at a faster rate.
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </body>
+
+  <footer class="footer">
+
+    <div class="footer-content">
+
+      <p>&copy; 2024 Berkeley EECS106A Team 23. All rights reserved.</p>
 
       <p>
 
-        We acheived an end result that meets our design criteria on our
+        Github:
 
-        project proposal. For sensing, we used computer vision via color
+        <a href="https://github.com/Jungpyo-L/pushpull_suctioncup_106a">EE106A Push Pull Suction Cup</a>
 
-        thresholding to identify the center of the board, which laid the
+      </p>
 
-        foundation for the rest of the programming. We also developed our own
+      <p>
 
-        haptic sensing, which allowed us to perform haptic search and
+        Contact:
 
-        identify, without vision, how to get a stable grip on a chess peice,
-
-        as well as when to proceed with moving the peice once the gripper had
-
-        been actuated. We were not able to recognize the gamestate with
-
-        computer vision, and so instead relied on recording the gamestate with
-
-        Stockfish's API. For motion planning, we simply performed the
-
-        gameplay, including capturing, castling, promoting, etc. For
-
-        actuation, we relied on the packages built into the lab's robot to
-
-        perform movement control, as well as our own circuitry to actuate the
-
-        negative and positive pressure of the vacuum suction cup.
+        <a href="mailto:zx40224617@berkeley.edu">zx40224617@berkeley.edu</a>
 
       </p>
 
     </div>
 
-
-
-    <div class="content">
-
-      <h3>Challenges Encountered</h3>
-
-      <p>
-
-        By far the most difficult challenge was properly executing haptic
-
-        search. Chamber 3 on our suction cup misread positive pressure by
-
-        about 10% more than the others, which, given that haptic search relies
-
-        on using the pressure readings to create a direction vector toward the
-
-        chambers that have not grabbed onto an object, skewed the direction
-
-        the next search location was in and effectively broke haptic search
-
-        entirely. To cope, we isolated the datapoint and scaled it down, and
-
-        if this didn't work, we really just prayed that chamber 3 was one of
-
-        the initial chambers that found something to grab.
-
-      </p>
-
-      <p>
-
-        Another difficult challenge we had to tackle was our circuit
-
-        construction. As a prototype, it was done on a breadboard, which
-
-        resulted in the occassional loose wire. This then broke the positive
-
-        pressure actuation, and was quite tricky to debug. To fix it, we
-
-        eventually just had someone push it in every five minutes while
-
-        playing a game of chess.
-
-      </p>
-
-      <p>
-
-        Lastly, it was extremely difficult to cope with the safety parameters
-
-        of the lab bot. Movements outside a specific imaginary box or at a
-
-        specific speed would cause the robot arm to automatically shut down.
-
-        This would interrupt any process we were executing, and became a
-
-        significant delay strain on the iterative design process we were
-
-        executing.
-
-      </p>
-
-    </div>
-
-
-
-    <div class="content">
-
-      <h3>Hacks and Improvements</h3>
-
-      <p>
-
-        As aforementioned, would we be able to ensure better hardware, the
-
-        immediate improvements we would make would be having a real circuit
-
-        that does not involve loose wires and a vacuum that reads its pressure
-
-        properly. That would enable our group to avoid our hacks of "pray the
-
-        3rd chamber actuates first" and "pray the wires don't come loose".
-
-        Other improvements we would like to make are mostly aesthetic: black
-
-        and white peices instead of blue and black, a chess board that is
-
-        checkered instead of a grid of squares. It would also be nice to get
-
-        better timing on all the sequential steps of a the robot moving a
-
-        peice so games can be played at a faster rate.
-
-      </p>
-
-    </div>
-
-  </div>
-
-</body>
-
-<footer class="footer">
-
-  <div class="footer-content">
-
-    <p>&copy; 2024 Berkeley EECS106A Team 23. All rights reserved.</p>
-
-    <p>
-
-      Github:
-
-      <a href="https://github.com/Jungpyo-L/pushpull_suctioncup_106a">EE106A Push Pull Suction Cup</a>
-
-    </p>
-
-    <p>
-
-      Contact:
-
-      <a href="mailto:zx40224617@berkeley.edu">zx40224617@berkeley.edu</a>
-
-    </p>
-
-  </div>
-
-</footer>
+  </footer>
 
 
 
