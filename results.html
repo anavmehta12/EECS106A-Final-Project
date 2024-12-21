@@ -1,17 +1,11 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <link rel="stylesheet" type="text/css" href="styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script
-      id="MathJax-script"
-      async
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-    ></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <title>EECS106 A Final Project</title>
   </head>
 
@@ -31,61 +25,42 @@
       </h1>
       <p class="backgroundImageText">EECS106A Fall 2024 Team 23</p>
     </div>
-    <h2 class="title">Results</h2>
+    <h2 class="title"></h2>
     <div class="wrapper">
       <div class="content">
+
+        <h3>Results</h3>
         <p>
-          The project turns out to work really well. The haptic search is
-          perform correctly that the suction cup wll not drag the piece with it
-          to cause some errors. The Computer Vision gives a really accurate
-          center position. The graveyard system and other case like capturing,
-          promoting, and castling are all handled corrctly when it occurs.
+          We were able to complete full games with minimal error from the robot. As the game progressed it was a necessity that
+          our
+          haptic search worked efficiently and properly as pieces would become unaligned and displaced from the center of the
+          square.
+          <br>
+          <br>
+
+          If we had more time, we would have liked to make our haptic search more robust as right now the step sizing it takes is
+          arbitrary based off of emperical testing. The stepsize is also limited to just moving in either the x or y direction.
+          Also, we would have maybe tried to individualize the search based off the piece we are plan to pick up.
+          One minor problem we had is if the piece was drastically misaligned from the center of the square, the suction gripper
+          would suck the board resulting in false positives. Other problems resulted from loose wiring in the hardware which would
+          result in us having to manually wiggle the faulty wire to perform proper suction.
         </p>
-      </div>
-      <div class="imageWrapper">
-        <div class="title-image-wrapper">
-          <p class="imagSubTitle">Center Detected Accurately:</p>
-          <img class="resultImage" src="images/Center Detected.png" />
-        </div>
 
-        <div class="title-image-wrapper">
-          <p class="imagSubTitle">Handling Graveyard Correctly:</p>
-          <img class="resultImage" src="images/Handling Graveyard.png" />
+        <div class="videoWrapper">
+          <p class="videoTitle"><b>Hyperlapse Gameplay (Demo):</b></p>
+          <iframe class="videos" src="https://www.youtube.com/embed//Ez1vncJWqsQ" title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+          </iframe>
         </div>
       </div>
 
-      <div class="content">
-        <p>
-          Here is a Hyperlapse demo game play of us vs the robot arm, as you can
-          see, the action of the robot arm is really steady and accurate that
-          the game play is really reliable wiht little to no errors at all. This
-          demo shows how the haptic search works in real game play cases and how
-          the capturing and graveyard system works as our desire.
-        </p>
-      </div>
-
-      <div class="videoWrapper">
-        <p class="videoTitle">Hyperlapse Gameplay (Demo):</p>
-        <iframe
-          class="videos"
-          src="https://www.youtube.com/embed//Ez1vncJWqsQ"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        >
-        </iframe>
-      </div>
-    </div>
   </body>
   <footer class="footer">
     <div class="footer-content">
       <p>&copy; 2024 Berkeley EECS106A Team 23. All rights reserved.</p>
       <p>
         Github:
-        <a href="https://github.com/Jungpyo-L/pushpull_suctioncup_106a"
-          >EE106A Push Pull Suction Cup</a
-        >
+        <a href="https://github.com/Jungpyo-L/pushpull_suctioncup_106a">EE106A Push Pull Suction Cup</a>
       </p>
       <p>
         Contact:
@@ -93,4 +68,5 @@
       </p>
     </div>
   </footer>
+
 </html>
