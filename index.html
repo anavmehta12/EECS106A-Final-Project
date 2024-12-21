@@ -2,19 +2,14 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script
-      id="MathJax-script"
-      async
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-    ></script>
+
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <title>EECS106 A Final Project</title>
   </head>
-
   <body class="pageContents">
     <nav class="top-bar">
       <a href="index.html" class="nav-item">Introduction</a>
@@ -36,36 +31,35 @@
       <div class="content">
         <h3>Goal:</h3>
         <p>
-          The goal of our project is to finish a game of chess using a UR-10
-          robot with a smart suction cup that can pick up flat chess pieces by
-          implementing haptic search and negative pressure. And also implement
-          positive pressure to place the chess piece more efficient.
+          The goal of our project is to play a game of chess using a UR-10
+          robot with a smart suction cup that can pick up custom chess pieces using
+          haptic search.
         </p>
 
         <h3>Why This Project?</h3>
         <p>
-          This is an interesting project to us since we need to learn how to
-          implement on a new robot arm that we never interact with in class, and
-          the idea of the smart suction cup is also really compelling that we
-          can pick up an object even if computer vision is not percise enough
-          for a good suction spot.
+          This is an interesting project since we wanted to work with a new robot infrastructure that we
+          never interacted with in class, and smart suction cup is a very
+          intriguing kind of end effector given that we can pick up an object without the need of computer vision or hardcoded
+          movements
         </p>
 
-        <h3>Interestiing Problmes and Chanllenges:</h3>
+        <h3>Interesting Problems and Challenges:</h3>
         <p>
-          There are a lot of chanllenges and problems we met when we working on
-          the project. But the most interesting ones are definitely implementing
-          the haptic search correctly, and also tuning the pressure threshold
-          when detecting whether the pieces are picked up or not.
+          There were a lot of challenges and problems we were faced with when working on
+          this project. One being the learning of a new robot framework however the
+          most interesting and difficult involved fully implementing haptic search and
+          tinkering with certain pressure values and step sizes in order
+          to make our software work in the physical world.
+
         </p>
 
         <h3>Real World Applications:</h3>
         <p>
-          Our project is useful for a lot of real world robotics applications
-          includes providing people with decreased mobility a chance to play
-          chess or some other boardgames, picking objects even when computer
-          vision failed, and pick up adverserial objects that are difficult for
-          grippers to deal with.
+          Our project is applicable in the real world as it provides chess players a way to play chess
+          in real life while still not having to interact with another person. But more seriously, it does
+          provide people with decreased mobility a new way to play
+          chess or similar boardgames.
         </p>
       </div>
 
@@ -77,14 +71,12 @@
       <p>&copy; 2024 Berkeley EECS106A Team 23. All rights reserved.</p>
       <p>
         Github:
-        <a href="https://github.com/Jungpyo-L/pushpull_suctioncup_106a"
-          >EE106A Push Pull Suction Cup</a
-        >
+        <a href="https://github.com/Jungpyo-L/pushpull_suctioncup_106a">EE106A Push Pull Suction Cup</a>
       </p>
       <p>
-        Contact:
+      Contact:
         <a href="mailto:zx40224617@berkeley.edu">zx40224617@berkeley.edu</a>
-      </p>
+      <p>
     </div>
   </footer>
 </html>
