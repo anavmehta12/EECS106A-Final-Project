@@ -5,7 +5,8 @@ p {
   color: #333333;
 }
 
-ul {
+ul,
+ol {
   font-size: 20px;
 }
 
@@ -79,13 +80,12 @@ h4 {
 }
 
 .resultImage {
-  width: 20vw;
+  height: 40vh;
 }
 
 .imageWrapper {
   display: flex;
   align-items: center;
-  background-color: #f2f4f6;
   justify-content: space-around;
   min-height: 20vh;
   width: 70vw;
@@ -145,6 +145,7 @@ ol {
 }
 
 .title-image-wrapper {
+  margin-top: 3%;
   width: 30%;
   display: flex;
   flex-direction: column;
@@ -185,10 +186,10 @@ ol {
 .background {
   margin-top: 7%;
   background-image: url("images/Berkeley\ Night.jpg");
-  background-size: cover; /* Ensures the image covers the entire div */
-  background-repeat: no-repeat; /* Prevents the image from repeating */
-  background-position: center; /* Centers the image */
-  width: 100%; /* Full height of the viewport */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -231,4 +232,21 @@ ol {
 
 .content {
   width: 70vw;
+}
+
+.videos {
+  height: 50vh;
+  width: 30vw;
+}
+
+.videoWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3%;
+}
+
+.videoTitle {
+  text-align: center;
 }

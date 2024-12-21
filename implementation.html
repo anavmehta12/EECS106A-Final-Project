@@ -34,7 +34,7 @@
     <h2 class="title">Implementation</h2>
     <div class="wrapper">
       <div class="content">
-        <h3>Hardware:</h3>
+        <h3>Hardware</h3>
         <h4>UR10 Robot Arm:</h4>
         <p>
           We are really lucky that the Embodied Dexterity allowed us to use
@@ -56,11 +56,12 @@
           hard since it takes some time for the item to fall off even after
           turning off the suction cup. So we design and create another circuit
           that can create positive pressure to push the item off instead off
-          letting it fall naturally. Hers is a <a href="">link</a> to the detail
-          circuit diagram in the additional item section.
+          letting it fall naturally. Hers is a
+          <a href="design.html#circuit">link</a> to the more detailed
+          description of the circuit in the design section.
         </p>
       </div>
-
+      <img class="noteImage" src="images/Detailed Circuit.png" />
       <div class="content">
         <h4>Smart Suction Cup:</h4>
         <p>
@@ -77,24 +78,24 @@
           up successfully. In our case, since the 3D printed chess pieces have
           some holes and gaps due to the shape of the pieces, like the eyes and
           neck of the knights, we need to perform haptic search to get a good
-          suction spot. Here is a <a href="">link</a> to the close up haptic
-          search video in additional materials section. You can find more
-          details about smart suction cup with haptic search
+          suction spot. You can find more details about smart suction cup with
+          haptic search
           <a href="https://arxiv.org/abs/2309.07360">here</a>
         </p>
       </div>
       <img class="noteImage" src="images/smart suction cup.png" />
       <div class="content">
-        <h3>Software:</h3>
-        <h4>Computer vision:</h4>
+        <h3>Software</h3>
+        <h4>Computer Vision:</h4>
         <p>
           This part is straight forward, we use the color thresholding we
           learned in the lab to locate the center of the board by pasting a
           orange tape in the middle of the board. So we can create a grid
           mapping base on the center of the board. We first initialize the
-          camera frame using the tool frame to get the transfrom from link to
-          camera to get the position in base frame which is the world frame. The
-          robot arm will first face the camera down and start detecting the
+          camera frame using the tool frame to get the transfrom from camera
+          link to base, which is the world frame, and then we compute the
+          position of the orange tape in world frame using that transformation
+          The robot arm will first face the camera down and start detecting the
           orange tape in the camera frame, I then put the detected position in
           another python file so the robot arm will go to the center for us to
           verify whether it is accurate or not.
@@ -102,10 +103,166 @@
       </div>
       <img class="noteImage" src="images/orange tape center.jpg" />
       <div class="content">
-        <h4>Haptic Search and Pressure Sensing</h4>
-        <p></p>
+        <h4>Haptic Search and Pressure Sensing:</h4>
+        <p>
+          As we mentioned above, the smart suctiion cup perform haptic search to
+          find a better suction spot, and the next movement of the suction cup
+          depends on the current pressure readings of the 4 chambers in the
+          suction cup.
+        </p>
       </div>
-      <img />
+
+      <div class="imageWrapper">
+        <div class="title-image-wrapper">
+          <p class="imagSubTitle">Pressure reading when no suction occur:</p>
+          <img src="images/normal pressure sensing.png" class="resultImage" />
+        </div>
+        <div class="title-image-wrapper">
+          <p class="imagSubTitle">Pressure reading when suction occur</p>
+          <img src="images/Suction pressure sensing.png" class="resultImage" />
+        </div>
+      </div>
+
+      <div class="content">
+        <p>
+          As we can see above, when the suction is steady and successful, the
+          prresure reading for all 4 chambers all drop and get really close to
+          each other. So in the code, we compare the current pressure readings
+          for all 4 chambers with a certain threshold that we got from trials
+          and errors so that if the average of the 4 chambers have a pressure
+          reading that is lower than the threshold, the suction is considered
+          successful. If not successful, we compute a directional vector base on
+          the difference between the pressure reading in different chambers, and
+          normalize it to get a general direction of where the items are. And we
+          apply a small step size to the direcrion so the robot arm can move in
+          that direction with a small step size to the item to perform next
+          suction. And it will keep trying until a certain time out. Also as we
+          mentioned above, the pieces will not fall down even when we turn off
+          the suction cup, so we implement the positive pressure to push the
+          pieces off. During haptic search, even though some suction may be
+          flagged as unsuccessful, but there may still be some certain level of
+          suction on the pieces, which may drag the pieces into the direction of
+          the next move that lead to the failing of haptic search. So everytime
+          after we flag a suction as unsuccessful, we push the pieces off using
+          the positive pressure that is created by our circuit.
+        </p>
+      </div>
+
+      <div class="videoWrapper">
+        <p class="videoTitle">Close up haptic Search:</p>
+        <iframe
+          class="videos"
+          src="https://www.youtube.com/embed/aAXWdapOAQI"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        >
+        </iframe>
+      </div>
+      <div class="content">
+        <h4>Game Logic:</h4>
+        <p>
+          For the robot arm to know and perform the next step itself, we use the
+          Stockfish API that allow us to type in our move and it will perform
+          its next move itself base on the current situation. At the same time,
+          it will record the entire board - what and where are all the pieces on
+          board. It will also gives information about whether the move will
+          induce any capturing, promoting, castling, and what are the pieces
+          involve in this action, so we can perform the action we want base on
+          the information that the API return. We need to filter out the
+          information that we need and also consider some cases where several
+          actions can occur at the same time like capturing while promoting. And
+          after we have the information we want, we can classify which case it
+          is base on the information, and call some basic functions that we
+          wrote to perform the entire process for that case.
+        </p>
+      </div>
+      <div class="videoWrapper">
+        <p class="videoTitle">Capturing While Promoting:</p>
+        <iframe
+          class="videos"
+          src="https://www.youtube.com/embed/CxExffUhxj4"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        >
+        </iframe>
+      </div>
+      <div class="content">
+        <h3>Complete System</h3>
+        <ol>
+          <li>
+            Use computer vision to get the center of the board by color
+            thresholding
+          </li>
+          <li>
+            After we have the center, we can check the accuracy by putting the
+            coordinates into another file that will goes to the position
+          </li>
+          <li>
+            After we have the correct center position, we update it manually in
+            the game play file so that when the game start, it will calculate
+            the position of the grids base on the center position.
+          </li>
+          <li>
+            When the game start, we will perform our move by typing the move in
+            the terminal, and the robot arm will perform the move for us.
+          </li>
+          <li>
+            Since We only know that the piece will be in a certain grid, but not
+            exactly where they are in the grid. And there are some holes and
+            gaps on the piece as well, so the robot arm will go to the center of
+            the grid and perform haptic search on the piece until picking it up
+            successfully.
+          </li>
+          <li>
+            Everytime after we perform a move, the robot arm will perform its
+            own move base on the information and move that is return from the
+            StockFish API.
+          </li>
+          <li>
+            In the game, the sofware we wrote is always checking which case the
+            move will result in, such as capturing and castling. So for every
+            move, our software will classify which case it is and perform
+            corresponding move. Like for capturing, it will first move the piece
+            that got captured into their designed graveyard, and move the moving
+            piece to the position of that piece that just got captured.
+          </li>
+          <li>
+            And we can now play a fun chess game with a robot arm until we get a
+            winner.
+          </li>
+        </ol>
+      </div>
+      <div class="videoWrapper">
+        <p class="videoTitle">Example of a simple system flow:</p>
+        <iframe
+          class="videos"
+          src="https://www.youtube.com/embed/YA2qL1mnWWc"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        >
+        </iframe>
+      </div>
     </div>
   </body>
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2024 Berkeley EECS106A Team 23. All rights reserved.</p>
+      <p>
+        Github:
+        <a href="https://github.com/Jungpyo-L/pushpull_suctioncup_106a"
+          >EE106A Push Pull Suction Cup</a
+        >
+      </p>
+      <p>
+        Contact:
+        <a href="mailto:zx40224617@berkeley.edu">zx40224617@berkeley.edu</a>
+      </p>
+    </div>
+  </footer>
 </html>
