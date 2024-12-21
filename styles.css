@@ -2,7 +2,7 @@ p {
   font-size: 20px;
   margin-bottom: 2vh;
   width: 70vw;
-  color: #333333;
+  color: #4b4847;
 }
 
 ul,
@@ -18,23 +18,23 @@ a {
 h1 {
   font-size: 40px;
   margin-top: 30px;
-  color: #222222;
+  color: #69923e;
 }
 
 h2 {
   font-size: 32px;
-  color: #222222;
+  color: #69923e;
 }
 
 h3 {
   font-size: 26px;
-  color: #222222;
+  color: #4e7837;
 }
 
 h4 {
   font-size: 23px;
   margin-top: 20px;
-  color: #222222;
+  color: #004474;
 }
 
 .pageContents {
@@ -58,6 +58,17 @@ h4 {
 .title {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.video-title {
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+video {
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .introduction {
