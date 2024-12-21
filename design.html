@@ -127,14 +127,12 @@
         <p>
           We out sourced the logic behind the game play to an open-source chess
           engine called Stockfish. Due to hardware limitations we were
-          restricted to using older version. We drew up a 24 in x 24 in chess
-          board, resulting in squares that were 3 in x 3 in. We decided to hard
-          program the location of each squares center, however this does not
-          guarantee a piece will be in an orientation that can be picked up on the
-          first try. Additionally, we programmed in extra locations on the off
-          the board for each team to have a graveyard and place where promotion
-          pieces can be grabbed from. This way we could handle the common
-          capture and the less frequent edge cases like promoting and castling.
+          restricted to using an older version. We drew up a 24 in x 24 in chess
+          board, resulting in squares that were 3 in x 3 in. We calculated the offsets from the center
+          of the board to each file and rank and thus from a coordinate we could determine how to move across the board
+          efficiently. Additionally, we assigned extra locations off
+          the board for each teams captured pieces (Graveyard) and where Queens are kept to be promoted into.
+          This way we could handle the common capture and the less frequent edge cases like promoting and castling.
         </p>
       </div>
       <img class="noteImage" src="images/Discriptive Board Layout.jpg" />

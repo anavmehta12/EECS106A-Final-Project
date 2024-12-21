@@ -211,7 +211,9 @@ ol {
 .backgroundImageTitle {
   color: white;
 }
-
+a {
+  font-weight: bold;
+}
 .backgroundImageText {
   color: white;
 }
